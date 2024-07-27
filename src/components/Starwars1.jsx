@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./StarWars1.css"; // Import the CSS file
 
 const StarWars1 = () => {
   const [characters, setCharacters] = useState([]);
@@ -39,7 +40,6 @@ const StarWars1 = () => {
           fetch(url).then((res) => res.json())
         );
         const films = await Promise.all(filmPromises);
-        console.log(films);
 
         const vehiclePromises = data.vehicles.map((url) =>
           fetch(url).then((res) => res.json())
@@ -57,9 +57,13 @@ const StarWars1 = () => {
   };
 
   return (
-    <div>
-      <h1>Star Wars Characters</h1>
-      <select onChange={handleCharacterChange} value={selectedCharacter || ""}>
+    <div className="star-wars-container">
+      <h1 className="title">Star Wars Characters</h1>
+      <select
+        className="character-select"
+        onChange={handleCharacterChange}
+        value={selectedCharacter || ""}
+      >
         <option value="" disabled>
           Select a character
         </option>
@@ -74,7 +78,7 @@ const StarWars1 = () => {
       </select>
 
       {selectedCharacter && (
-        <div>
+        <div className="character-details">
           <h2>Character Details</h2>
           <table>
             <thead>

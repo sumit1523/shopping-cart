@@ -1,10 +1,12 @@
+import "./PokemonDetails.css";
+
 const PokemonDetails = ({ details }) => {
   if (!details) {
     return null;
   }
 
   return (
-    <div>
+    <div className="pokemon-details">
       <h2>{details.name}</h2>
       <p>Height: {details.height}</p>
       <p>Weight: {details.weight}</p>
