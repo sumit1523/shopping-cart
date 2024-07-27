@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="myForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      document
+        .getElementById("myForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          var formData = new FormData(this);
+          console.log(formData, "formdata");
+          for (var pair of formData.entries()) {
+            console.log(pair, "paisr");
+            console.log(pair[0] + ": " + pair[1]);
+          }
+          // Here you can send the formData to a server using fetch or another method
+        });
+    </script>
+  </body>
+</html>
