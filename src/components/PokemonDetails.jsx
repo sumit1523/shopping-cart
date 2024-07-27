@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./PokemonDetails.css";
 
 const PokemonDetails = ({ details }) => {
@@ -5,19 +6,37 @@ const PokemonDetails = ({ details }) => {
     return null;
   }
 
+  const { name, height, weight, abilities } = details;
+
   return (
     <div className="pokemon-details">
-      <h2>{details.name}</h2>
-      <p>Height: {details.height}</p>
-      <p>Weight: {details.weight}</p>
+      <h2>{name}</h2>
+      <p>Height: {height}</p>
+      <p>Weight: {weight}</p>
       <h3>Abilities:</h3>
       <ul>
-        {details.abilities.map((ability) => (
-          <li key={ability.ability.name}>{ability.ability.name}</li>
-        ))}
+        {abilities &&
+          abilities.map((ability) => (
+            <li key={ability.ability.name}>{ability.ability.name}</li>
+          ))}
       </ul>
     </div>
   );
+};
+
+PokemonDetails.propTypes = {
+  details: PropTypes.shape({
+    name: PropTypes.string,
+    height: PropTypes.number,
+    weight: PropTypes.number,
+    abilities: PropTypes.arrayOf(
+      PropTypes.shape({
+        ability: PropTypes.shape({
+          name: PropTypes.string,
+        }),
+      })
+    ),
+  }),
 };
 
 export default PokemonDetails;
